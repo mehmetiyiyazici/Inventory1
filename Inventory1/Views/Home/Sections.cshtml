@@ -1,0 +1,27 @@
+@model List<Section>
+
+<div align="center">
+    <h1>Sections</h1>
+    <br>
+    <form action="/Home/CreateSection" method="post" autocomplete="off">
+        <input type="text" name="Name" placeholder="Section">
+        <br>
+        <select name="LocationId" required>
+            <option value="" selected disabled>Location Seçiniz</option>
+            @foreach (var locations in ViewBag.Locations)
+            {
+                <option value="@locations.Id">@locations.Name</option>
+            }
+        </select>
+        <button>Ekle</button>
+    </form>
+</div>
+<hr>
+<ul>
+    @foreach (var sections in Model)
+    {
+        <hr>
+        <li>@sections.Name</li>
+        <hr>
+    }
+</ul>

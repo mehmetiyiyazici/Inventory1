@@ -1,0 +1,30 @@
+@model Item
+
+@{
+ViewData["Title"] = "Ürün Detay";
+}
+
+<a href="/Home/EditItem/@Model.Id">Ürün Güncelle</a> |
+<a href="/Home/DeleteItem/@Model.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')">Ürün Sil</a>
+<hr>
+<p>Ürün adı: @Model.Name</p>
+<hr>
+<p>Ürün Area'sı: @ViewBag.Detail.Area.Name</p>
+<p>Ürün Sectionu: @ViewBag.Detail.Area.Section.Name</p>
+<p>Ürün Locationu: @ViewBag.Detail.Area.Section.Location.Name</p>
+<hr>
+<p>Ürün Adedi: @Model.Quantity</p>
+<p>
+    @if (Model.ExpirationDate != null)
+    {
+<hr>
+<p>Son Kullanım Tarihi: @Model.ExpirationDate</p>
+}
+</p>
+<p>
+    @if (Model.ImgPath != null)
+    {
+<hr>
+<p>Ürün fotoğrafı: <img src="/uploads/@Model.ImgPath" style="max-width: 200px; max-height: 200px;"></p>
+}
+</p>

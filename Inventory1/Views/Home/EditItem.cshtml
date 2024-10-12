@@ -1,0 +1,100 @@
+@model Item
+
+@{
+    ViewData["Title"] = "Ürün Güncelle";
+}
+
+<div align="center">
+    <h1>Ürün Güncelle</h1>
+    <form asp-action="EditItem" autocomplete="off" enctype="multipart/form-data">
+        <input type="hidden" value="@Model.Id" name="Id">
+        <div>
+            <input type="text" id="name" value="@Model.Name" name="Name" placeholder="Ürün Adı">
+        </div>
+        <div>
+            <select name="AreaId" required>
+                <option value="" selected disabled>Area Seçiniz</option>
+                @foreach (var area in ViewBag.Areas)
+                {
+                    <option value="@area.Id" selected = "@(area.Id == Model.AreaId ? "selected" : "")">@area.Name</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="number" name="Quantity" id="quantity" value="@Model.Quantity" required>
+            <br> <small>Ürün Adedi</small>
+        </div>
+        <div>
+            <input type="date" name="ExpirationDate" id="expiry-date" value="@Model.ExpirationDate?.ToString("yyyy-MM-dd")">
+            <br> <small>Son Kullanım Tarihi</small>
+        </div>
+        <div>
+            <input type="file" name="Photo" id="photo" accept="image/png/jpeg">
+            <br> <small>Mevcut fotoğraf: @Model.ImgPath</small>
+        </div>
+        <br>
+        <button type="button" class="btn-primary" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+            <a href="/Home/DeleteItem/@ViewBag.Id" style="text-decoration: none; color: white">Sil</a>
+        </button> |
+        <button type="submit" class="btn-primary">Güncelle</button>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f0f0f0; 
+        font-family: Arial, sans-serif;
+    }
+
+    div[align="center"] {
+        background-color: white; 
+        padding: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        max-width: 400px; 
+        margin: auto; 
+    }
+
+    h1 {
+        color: hotpink;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="file"] {
+        width: 100%; 
+        padding: 10px; 
+        margin: 10px 0; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    input[type="file"] {
+        padding: 5px; 
+    }
+
+    small {
+        display: block;
+        color: #666; 
+        margin-top: -5px; 
+        margin-bottom: 10px;
+    }
+
+    .btn-primary {
+        background-color: hotpink; 
+        color: white; 
+        border: none; 
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; 
+        margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+        background-color: hotpink;
+    }
+</style>

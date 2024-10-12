@@ -1,0 +1,45 @@
+﻿@model List<Item>
+
+@* @{ *@
+@*     ViewData["Title"] = "Anasayfa"; *@
+@* } *@
+
+<div align="center">
+    <h1>Envanter Uygulaması</h1>
+    <div align="right">
+        <form asp-action="Details" id="redirectForm" autocomplete="off">
+            <input list="itemList" id="redirectData" type="text" name="Id">
+            <datalist id="itemList">
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </datalist>
+            <button>Git</button>
+        </form>
+    </div>
+    <form asp-action="Items" autocomplete="off">
+        <input type="hidden" name="AreaId" value="@ViewBag.areaId">
+        <input type="text" name="Name">
+        <input type="submit" value="Ekle">
+    </form>
+</div>
+<hr>
+@foreach (var items in Model)
+{
+    <hr>
+    <p>
+        <a href="/Home/Details/@items.Id">@items.Name</a><br>
+        @if (items.ImgPath != null)
+        {
+            <img src="/uploads/@items.ImgPath" style="max-width: 200px; max-height: 200px;">
+        }
+    </p>
+    <hr>
+}
+
+<script>
+    redirectData.addEventListener('change', function() {
+        redirectForm.submit();
+    });
+</script>
