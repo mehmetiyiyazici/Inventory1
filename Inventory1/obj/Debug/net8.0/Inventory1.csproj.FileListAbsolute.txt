@@ -282,3 +282,4 @@
 /Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/obj/Debug/net8.0/Inventory1.pdb
 /Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/obj/Debug/net8.0/Inventory1.genruntimeconfig.cache
 /Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/obj/Debug/net8.0/ref/Inventory1.dll
+/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/obj/Debug/net8.0/Inventory1.sourcelink.json

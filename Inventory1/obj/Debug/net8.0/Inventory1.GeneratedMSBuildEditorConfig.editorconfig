@@ -26,32 +26,36 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/Areas.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BcmVhcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/CreateItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DcmVhdGVJdGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/Crud.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DcnVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/EditArea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0QXJlYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/EditItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0SXRlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/EditLocation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0TG9jYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/EditSection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0U2VjdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/Locations.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Mb2NhdGlvbnMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Home/Sections.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9TZWN0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/mehmetiyiyazici/Documents/works/Inventory1/Inventory1/Views/Shared/Error.cshtml]

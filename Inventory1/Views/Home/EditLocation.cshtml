@@ -1,0 +1,19 @@
+@model Location
+
+@{
+    ViewData["Title"] = "Location Düzenle";
+}
+
+@{
+    Layout = null;
+}
+
+<form asp-action="EditLocation" autocomplete="off">
+    <div>
+        <input type="hidden" value="@Model.Id" name="Id">
+    </div>
+    <div>
+        <input type="text" value="@Model.Name" name="Name">
+    </div>
+    <button>Güncelle</button>
+</form>

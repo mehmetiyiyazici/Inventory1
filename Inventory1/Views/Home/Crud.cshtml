@@ -1,0 +1,103 @@
+@{
+    ViewData["Title"] = "Gurud";
+}
+
+<div align="center">
+    <div style="display: flex; justify-content: space-around; width: 100%; max-width: 1200px;">
+        <!-- Locations -->
+        <div class="column">
+            <h5>Locations</h5>
+            <form action="/Home/CreateLocation" method="post" autocomplete="off">
+                <input type="text" name="Name" placeholder="Location" required>
+                <button>Ekle</button>
+            </form>
+            <hr>
+            <div align="left">
+                @foreach (var locations in ViewBag.Locations)
+                {
+                    <li>@locations.Name | <a href="/Home/EditLocation/@locations.Id" class="edit btn btn-light">✍🏻</a> - <a href="/Home/DeleteLocation/@locations.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')">🗑️</a></li>
+                }
+            </div>
+        </div>
+
+        <!-- Sections -->
+        <div class="column">
+            <h5>Sections</h5>
+            <form action="/Home/CreateSection" method="post" autocomplete="off">
+                <input type="text" name="Name" placeholder="Section" required>
+                <br>
+                <select name="LocationId" required>
+                    <option value="" selected disabled>Location Seçiniz</option>
+                    @foreach (var locations in ViewBag.ListLocations)
+                    {
+                        <option value="@locations.Id">@locations.Name</option>
+                    }
+                </select>
+                <button>Ekle</button>
+            </form>
+            <hr>
+            <div align="left">
+                @foreach (var locations in ViewBag.Sections)
+                {
+                    <li>@locations.Name | <a href="/Home/EditSection/@locations.Id" class="edit btn btn-light">️✍🏻</a> - <a href="/Home/DeleteSection/@locations.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')">🗑</a></li>
+                }
+            </div>
+        </div>
+
+        <!-- Areas -->
+        <div class="column">
+            <h5>Areas</h5>
+            <form action="/Home/CreateArea" method="post" autocomplete="off">
+                <input type="text" name="Name" placeholder="Area" required>
+                <br>
+                <select name="SectionId" required>
+                    <option value="" selected disabled>Section Seçiniz</option>
+                    @foreach (var sections in ViewBag.Sections)
+                    {
+                        <option value="@sections.Id">@sections.Name</option>
+                    }
+                </select>
+                <button>Ekle</button>
+            </form>
+            <hr>
+            <div align="left">
+                @foreach (var locations in ViewBag.Areas)
+                {
+                    <li>@locations.Name | <a href="/Home/EditArea/@locations.Id" class="edit btn btn-light">✍🏻</a> - <a href="/Home/DeleteArea/@locations.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')">🗑</a></li>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .column {
+        padding: 10px;
+        width: 30%;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    input, select {
+        margin-bottom: 10px;
+    }
+</style>
+
+<dialog id="dialog"></dialog>
+
+@section Scripts
+{
+    <script>
+    $('.alert').delay(1500).fadeOut();
+
+    document.querySelectorAll('.edit')
+        .forEach(x => x.addEventListener('click', handleEditClick));
+
+    function handleEditClick(e) {
+        e.preventDefault();
+        $('#dialog').load(this.href);
+        dialog.showModal();
+    }
+    </script>
+}

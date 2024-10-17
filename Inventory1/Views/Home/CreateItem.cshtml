@@ -39,18 +39,57 @@ ViewData["Title"] = "Ürün Ekle";
     </form>
 </div>
 
-@* <script> *@
-@*     $(document).ready(function () { *@
-@*         $('#area').on('change', function() { *@
-@*         var areaId = $(this).val(); *@
-@*         console.log(locationId) *@
-@*          *@
-@*          *@
-@*         }); *@
-@*     }); *@
-@*      *@
-@* } *@
-@* </script> *@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function ()
+    {
+        $('#location').on('change', function ()
+        {
+            var locationId = $(this).val();
+            console.log(locationId);
+
+            $.ajax({
+            type:'post',
+            url:'/Home/GetSectionsByLocationId?locationId='+locationId,
+            contentType:'json',
+            success:function (data){            
+            console.log(data);            
+            var htm = "";
+            htm += "<option value='' selected disabled>Section Seçiniz</option>"
+            for(i = 0; i < data.length; i++){
+                htm += `<option value='${data[i].id}'>${data[i].name}</option>`;
+            }
+                $('#section').html(htm);
+                $('#section').show();
+                $('#area').hide();
+            }            
+            });
+        });
+
+        $('#section').on('change', function ()
+        {
+            var sectionId = $(this).val();
+            console.log(sectionId);
+
+            $.ajax({
+                type:'post',
+                url:'/Home/GetAreasBySectionId?sectionId='+sectionId,
+                contentType:'json',
+                success:function (data){
+                    console.log(data);
+                    var htm = "";
+                    htm += "<option value='' selected disabled>Area Seçiniz</option>"
+                    for(i = 0; i < data.length; i++){
+                        htm += `<option value='${data[i].id}'>${data[i].name}</option>`;
+                    }
+                    $('#area').html(htm);
+                    $('#area').show();
+                }
+            });
+        });
+    });
+</script>
 
 <style>
     body {

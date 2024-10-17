@@ -1,0 +1,22 @@
+@model Section
+
+@{
+    ViewData["Title"] = "Section Düzenle";
+}
+
+@{
+    Layout = null;
+}
+
+<form asp-action="EditSection" autocomplete="off">
+    <div>
+        <input type="hidden" value="@Model.LocationId" name="LocationId">
+    </div>
+    <div>
+        <input type="hidden" value="@Model.Id" name="Id">
+    </div>
+    <div>
+        <input type="text" value="@Model.Name" name="Name">
+    </div>
+    <button>Güncelle</button>
+</form>

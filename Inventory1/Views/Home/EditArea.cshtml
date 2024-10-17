@@ -1,0 +1,22 @@
+@model Area
+
+@{
+ViewData["Title"] = "Area Düzenle";
+}
+
+@{
+Layout = null;
+}
+
+<form action="/Home/EditArea" method="post" autocomplete="off">
+    <div>
+        <input type="hidden" value="@Model.Id" name="Id"/>
+    </div>
+    <div>
+        <input type="hidden" value="@Model.SectionId" name="SectionId"/>
+    </div>
+    <div>
+        <input type="text" value="@Model.Name" name="Name"/>
+    </div>
+    <button>Güncelle</button>
+</form>

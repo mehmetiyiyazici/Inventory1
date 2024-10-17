@@ -61,12 +61,16 @@ public class HomeController : Controller
         return RedirectToAction("CreateItem", new {name = model.Name, id = model.Id});
     }
 
-    [Route("/UrünEkle")]
-    public IActionResult CreateItem(string name, int id)
+    [Route("/UrunEkle")]
+    public IActionResult CreateItem(string name, int id, int? sectionId, int? locationId)
     {
         
-        var areas = _context.Areas.ToList();
-        ViewBag.Areas = areas;
+        var locations = _context.Locations
+            .Include(x => x.Sections)
+            .ThenInclude(x => x.Areas)
+            .ToList();
+        
+        ViewBag.Location = locations;
         
         ViewBag.Name = name;
         ViewBag.Id = id;
@@ -74,7 +78,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    [Route("/UrünEkle")]
+    [Route("/UrunEkle")]
     public IActionResult CreateItem(Item model)
     {
         if (!ModelState.IsValid)
@@ -112,6 +116,19 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult GetSectionsByLocationId(int locationId)
+    {
+        var sections = _context.Sections.Where(x => x.LocationId == locationId).ToList();
+        return Json(sections);  
+    }
+
+    public IActionResult GetAreasBySectionId(int sectionId)
+    {
+        var areas = _context.Areas.Where(x => x.SectionId == sectionId).ToList();
+        return Json(areas);
+    }
+
+    [Route("/UrunGuncelle")]
     public IActionResult EditItem(int id)
     {
         var area = _context.Areas.ToList();
@@ -121,6 +138,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
+    [Route("/UrunGuncelle")]
     public IActionResult EditItem(Item model)
     {
         if (!ModelState.IsValid)
@@ -172,7 +190,49 @@ public class HomeController : Controller
         _context.Areas.Add(model);
         _context.SaveChanges();
         
-        return RedirectToAction("Areas");
+        return RedirectToAction("Crud");
+    }
+    
+    public IActionResult EditArea(int id)
+    {
+        var area = _context.Areas.Find(id);
+
+        if(area == null)
+        {
+            return NotFound();
+        }
+
+        return View(area);
+    }
+
+    [HttpPost]
+    public IActionResult EditArea(Area model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        _context.Areas.Update(model);
+        _context.SaveChanges();
+
+        return RedirectToAction("Crud");
+
+    }
+
+    public IActionResult DeleteArea(int id)
+    {
+        var area = _context.Areas.Find(id);
+
+        if (area == null)
+        {
+            return NotFound();
+        }
+        
+        _context.Areas.Remove(area);
+        _context.SaveChanges();
+
+        return RedirectToAction("Crud");
     }
 
     #endregion
@@ -198,7 +258,49 @@ public class HomeController : Controller
         _context.Sections.Add(model);
         _context.SaveChanges();
         
-        return RedirectToAction("Sections");
+        return RedirectToAction("Crud");
+    }
+    
+    public IActionResult EditSection(int id)
+    {
+        var section = _context.Sections.Find(id);
+
+        if(section == null)
+        {
+            return NotFound();
+        }
+
+        return View(section);
+    }
+
+    [HttpPost]
+    public IActionResult EditSection(Section model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        _context.Sections.Update(model);
+        _context.SaveChanges();
+
+        return RedirectToAction("Crud");
+
+    }
+
+    public IActionResult DeleteSection(int id)
+    {
+        var section = _context.Sections.Find(id);
+
+        if (section == null)
+        {
+            return NotFound();
+        }
+        
+        _context.Sections.Remove(section);
+        _context.SaveChanges();
+
+        return RedirectToAction("Crud");
     }
     
     #endregion
@@ -221,8 +323,71 @@ public class HomeController : Controller
         _context.Locations.Add(model);
         _context.SaveChanges();
         
-        return RedirectToAction("Locations");
+        return RedirectToAction("Crud");
+    }
+    
+    public IActionResult EditLocation(int id)
+    {
+        var location = _context.Locations.Find(id);
+
+        if(location == null)
+        {
+            return NotFound();
+        }
+
+        return View(location);
+    }
+
+    [HttpPost]
+    public IActionResult EditLocation(Location model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        _context.Locations.Update(model);
+        _context.SaveChanges();
+
+        return RedirectToAction("Crud");
+
+    }
+
+    public IActionResult DeleteLocation(int id)
+    {
+        var location = _context.Locations.Find(id);
+
+        if (location == null)
+        {
+            return NotFound();
+        }
+        
+        _context.Locations.Remove(location);
+        _context.SaveChanges();
+
+        return RedirectToAction("Crud");
     }
     
     #endregion
+
+    [Route("/gurud")]
+    public IActionResult Crud()
+    {
+        var locations = _context.Locations
+            .Include(x => x.Sections)
+            .ThenInclude(x => x.Areas)
+            .ToList();
+        
+        var listLocations = _context.Locations.Include(x => x.Sections).ToList();
+        ViewBag.ListLocations = listLocations;
+        
+        var sections = _context.Sections.Include(x => x.Areas).ToList();
+        ViewBag.Sections = sections;
+        
+        var areas = _context.Areas.ToList();
+        ViewBag.Areas = areas;
+        
+        ViewBag.Locations = locations;
+        return View();
+    }
 }
